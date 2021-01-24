@@ -1,0 +1,44 @@
+﻿@model EnglishVocabularyTest.ViewModels.QuestionVM
+@{ 
+    ViewData["Title"] = "QuestionPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ }
+<div class="text-center">
+    <div class="mt-4">
+        <h1 class="pb-3">@Model.Question</h1>
+        <h3>@Model.Counter</h3>
+        <div class="container row">
+            <div class="col">
+                <button onclick="myFunction()" class="dropbtn">Знаю</button>
+            </div>
+            <div class="col">
+                <button form="que" class="idkbtn" type="submit" value="Не знаю" name="Answer">Не знаю</button>
+            </div>
+        </div>
+
+        <form id="que" method="post">
+            <input type="hidden" value="@Model.Question" name="Question" />
+            <input type="hidden" value="@Model.Counter" name="Counter" />
+            <h4>@ViewBag.Total</h4>
+
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="dropdown col-6 mt-3">
+                        <div id="myDropdown" class="dropdown-content">
+                            @foreach (var q in Model.Answers)
+                            {
+                <input type="submit" id="answers" value="@q.Rus" name="Answer" class="btn btn-primary mt-2" />}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" value="@Model.RightAnswer" name="RightAnswer" />
+            <input type="hidden" value="@Model.Rating" name="Rating" />
+            <input type="hidden" value="@Model.Scale" name="Scale" />
+        </form>
+    </div>
+</div>
+
